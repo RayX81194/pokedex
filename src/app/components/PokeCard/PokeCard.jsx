@@ -6,10 +6,11 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react'
    
 const page = () => {
-  const [posts, setPosts] = useState(null)
+  const [posts, setPosts] = useState(null);
+
   useEffect(() => {
     async function fetchPosts() {
-      let res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=10`)
+      let res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=9`)
       let data = await res.json()
       setPosts(data)
       console.log(data)

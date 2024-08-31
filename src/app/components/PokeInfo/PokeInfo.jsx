@@ -22,7 +22,7 @@ export default function PokeInfo() {
         }
       }
       fetchPokemon();
-    }, []); // Dependency array to prevent infinite loop
+    }, [id]); // Dependency array to prevent infinite loop
 
     useEffect(() => {
       async function fetchPokemonDesc() {
@@ -35,7 +35,7 @@ export default function PokeInfo() {
         }
       }
       fetchPokemonDesc();
-    }, []); // Dependency array to prevent infinite loop
+    }, [id]); // Dependency array to prevent infinite loop
 
     if (!poke) {
         return <div>Loading...</div>;
