@@ -5,7 +5,7 @@ import Link from 'next/link';
  
 import { useState, useEffect } from 'react'
    
-const page = () => {
+export default function PokeCard() {
   const [posts, setPosts] = useState(null);
 
   useEffect(() => {
@@ -51,5 +51,3 @@ const page = () => {
     </div>
   )
 }
-
-export default page
