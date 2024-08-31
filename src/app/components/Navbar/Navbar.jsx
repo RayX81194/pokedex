@@ -11,15 +11,15 @@ const Navbar = () => {
         setMenu(!menu)
     }
   return (
-    <nav className='w-full px-12 my-8 flex items-center justify-between'>
+    <nav className='w-full px-5 md:px-12 my-8 flex items-center justify-between'>
         <div className='logo'>
             <Link href="/">
-            <Image src="logo.svg" width={120} height={100}></Image>
+            <Image src="logo.svg" width={120} height={100} alt="PokeDex Logo"></Image>
             </Link>
         </div>
         <div onClick={toggleMenu} className='menu'>
         <div className='menu-closed cursor-pointer'>
-         {menu ? (<Image src="menu-close.svg" width={26} height={26}></Image>) : (<Image src="menu-open.svg" width={26} height={26}></Image>)}   
+         {menu ? (<Image src="menu-close.svg" width={26} height={26} alt='Menu Close'></Image>) : (<Image src="menu-open.svg" width={26} height={26} alt="Menu Open"></Image>)}   
         </div>
         {menu && (
                     <div className='menu-open absolute rounded-md shadow-md right-10 mt-2 bg-white text-white py-2'>
