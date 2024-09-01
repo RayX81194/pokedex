@@ -38,9 +38,9 @@ export default function PokeEvol() {
       const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeId}.png`;
 
       evolutions.push(
-        <div key={name} className="flex flex-col items-center">
-          <Image src={imageUrl} width={100} height={100} alt={name} />
-          <p className="font-semibold text-lg">
+        <div key={name} className="flex w-full flex-col items-center">
+          <Image src={imageUrl} width={200} height={200} alt={name} />
+          <p className="font-semibold text-2xl">
             {name.charAt(0).toUpperCase() + name.slice(1)}
           </p>
         </div>
@@ -51,7 +51,11 @@ export default function PokeEvol() {
     return evolutions;
   };
 
-  if (!pokeEvol) return <div>Loading...</div>;
+  if (!pokeEvol) return (
+    <section className="w-[76rem] h-[10rem] my-1 flex items-center justify-center">
+          <Image src="/loader.svg" width={50} height={50}></Image>
+    </section>
+  )
 
   return (
     <section className="mt-10">

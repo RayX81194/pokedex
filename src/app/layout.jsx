@@ -3,6 +3,7 @@ import Image from "next/image";
 import "./globals.css";
 import Navbar from "./components/Navbar/Navbar";
 import SmoothScrolling from "./components/SmoothScrolling/SmoothScrolling";
+import BackToTopButton from "./components/BackToTop/BackToTop";
 
 const kumbh = Kumbh_Sans({ subsets: ["latin"] });
 
@@ -11,8 +12,14 @@ export const metadata = {
   description: "PokeDex is a modern web app built with Next.js, offering detailed insights into Pokémon, including stats, evolutions, abilities, and more, all presented in a visually appealing format.",
 };
 
-
 export default function RootLayout({ children }) {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // This makes the scroll smooth
+    });
+  };
+
   return (
     <html lang="en">  
       <body className={`${kumbh.className} overflow-x-hidden bg-[#F6F8FC]`}>
@@ -30,6 +37,7 @@ export default function RootLayout({ children }) {
         </div>
         <Navbar />
         {children}
+        <BackToTopButton />
         </SmoothScrolling>
       </body>
     </html>

@@ -3,6 +3,9 @@ const nextConfig = {
     images: {
         domains: ['raw.githubusercontent.com'],
       },
+      experimental: {
+        ppr: true,
+      },
 };
 
 
