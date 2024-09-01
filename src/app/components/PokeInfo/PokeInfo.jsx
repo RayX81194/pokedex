@@ -43,6 +43,27 @@ export default function PokeInfo() {
         )
     }
 
+    const typeColors = {
+      grass: "bg-green-500",
+      poison: "bg-purple-500",
+      fire: "bg-red-500",
+      water: "bg-blue-500",
+      bug: "bg-green-700",
+      normal: "bg-gray-400",
+      electric: "bg-yellow-500",
+      ground: "bg-yellow-700",
+      fairy: "bg-pink-400",
+      fighting: "bg-red-700",
+      psychic: "bg-pink-500",
+      rock: "bg-yellow-800",
+      ghost: "bg-purple-700",
+      ice: "bg-blue-300",
+      dragon: "bg-indigo-800",
+      dark: "bg-gray-800",
+      steel: "bg-gray-500",
+      flying: "bg-blue-200",
+    };
+
     return (
       <section className="bg-white shadow-2xl rounded-lg flex flex-col xl:flex-row items-start">
         <div className="poke-image px-20 py-10">
@@ -58,10 +79,23 @@ export default function PokeInfo() {
           <h2 className="font-bold">#{poke.id.toString().padStart(3, '0')}</h2>
           <h2 className="font-bold text-[40px] tracking-wide">{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</h2>
           <div className='flex mt-1 gap-x-2'>
-            <h1 className='px-3 py-1 font-semibold bg-green-500 text-black rounded-full text-[11px]'>Grass</h1>
-            <h1 className='px-3 py-1 font-semibold bg-purple-600 text-black rounded-full text-[11px]'>Poison</h1>     
+          {poke.types.map((typeInfo) => (
+                  <h1
+                    key={typeInfo.type.name}
+                    className={`px-3 py-1 font-semibold text-black rounded-full text-[11px] ${
+                      typeColors[typeInfo.type.name] || "bg-gray-300"
+                    }`}
+                  >
+                    {typeInfo.type.name.charAt(0).toUpperCase() +
+                      typeInfo.type.name.slice(1)}
+                  </h1>
+                ))}    
           </div>
-          <p className="max-w-[400px] mt-3">{pokeDesc.flavor_text_entries[1]?.flavor_text}</p>
+          <p className="max-w-[400px] mt-3">{pokeDesc.flavor_text_entries
+            .find((entry) => entry.language.name === "en")
+            .flavor_text.replace(/[\n\r\f]/g, " ") // Replace newlines, carriage returns, and form feeds with spaces
+            .replace(/\s+/g, " ") // Replace multiple spaces with a single space
+            .trim()}</p>
           <div className="flex mt-4 gap-x-5">
             <div className="flex rounded-md items-center justify-between bg-[#F6F8FC] w-[220px] px-3 py-2">
               <h2 className="font-bold">Height</h2>
@@ -82,7 +116,7 @@ export default function PokeInfo() {
             ))}
           </div>
           <h2 className="font-bold mt-4 text-xl">Abilities</h2>
-          <div className="flex mt-4 mb-10 gap-x-5">
+          <div className="grid grid-cols-2 gap-y-3 mt-4 mb-10 gap-x-5">
             {poke.abilities.map((ability, index) => (
               <div key={index} className="flex rounded-md items-center justify-start bg-[#F6F8FC] w-[220px] px-3 py-2">
                 <h2 className="font-bold">{ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1)}</h2>

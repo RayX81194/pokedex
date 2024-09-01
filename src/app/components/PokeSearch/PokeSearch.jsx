@@ -1,11 +1,8 @@
 'use client'
 import Image from "next/image";
-import { useState } from "react";
 
 
-export default function PokeSearch() {
-
-  const [pokemon,setPokemon] = useState("");
+export default function PokeSearch({ pokemon, setPokemon }) {
 
   const handleEvent = (e) => {
     e.preventDefault();
