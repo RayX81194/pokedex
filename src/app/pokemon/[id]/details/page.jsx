@@ -6,8 +6,6 @@ export const metadata = {
   description: "PokeDex is a modern web app built with Next.js, offering detailed insights into Pokémon, including stats, evolutions, abilities, and more, all presented in a visually appealing format.",
 };
 
-export const experimental_ppr = true
-
 
 export default function Pokemon() {
   return (
