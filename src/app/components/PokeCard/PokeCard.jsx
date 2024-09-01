@@ -3,52 +3,46 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+const LIMIT = 30; // Number of Pokémon to fetch per request
+
 export default function PokeCard({ searchQuery }) {
-  const [posts, setPosts] = useState(null);
+  const [posts, setPosts] = useState([]);
+  const [nextUrl, setNextUrl] = useState(`https://pokeapi.co/api/v2/pokemon?limit=${LIMIT}`);
+  const [hasMore, setHasMore] = useState(true);
 
-  useEffect(() => {
-    async function fetchPosts() {
-      let res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=50`);
+  const fetchPosts = async (url) => {
+    try {
+      let res = await fetch(url);
       let data = await res.json();
-
-      // Fetch additional details for each Pokémon
       const detailedPosts = await Promise.all(
         data.results.map(async (pokemon) => {
-          // Fetch Pokémon details (including sprites)
           const pokemonRes = await fetch(pokemon.url);
           const pokemonData = await pokemonRes.json();
-
-          // Fetch Pokémon species details (including descriptions)
-          const speciesRes = await fetch(
-            `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.id}/`
-          );
+          const speciesRes = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonData.id}/`);
           const speciesData = await speciesRes.json();
-
-          // Find the English description
           const englishDescription = speciesData.flavor_text_entries
             .find((entry) => entry.language.name === "en")
-            .flavor_text.replace(/[\n\r\f]/g, " ") // Replace newlines, carriage returns, and form feeds with spaces
-            .replace(/\s+/g, " ") // Replace multiple spaces with a single space
-            .trim(); // Trim any leading or trailing spaces
+            ?.flavor_text.replace(/[\n\r\f]/g, " ")
+            .replace(/\s+/g, " ")
+            .trim();
 
           return {
             ...pokemonData,
-            description: englishDescription,
+            description: englishDescription || "No description available.",
           };
         })
       );
-
-      setPosts(detailedPosts);
+      setPosts((prev) => [...prev, ...detailedPosts]);
+      setNextUrl(data.next); // Set URL for the next page
+      if (!data.next) setHasMore(false); // No more data to fetch
+    } catch (error) {
+      console.error("Failed to fetch Pokémon data:", error);
     }
-    fetchPosts();
-  }, []);
+  };
 
-  if (!posts)
-    return (
-      <div className="mt-20">
-        <Image src="/loader.svg" width={50} height={50} alt="Loading" />
-      </div>
-    );
+  useEffect(() => {
+    fetchPosts(nextUrl);
+  }, [nextUrl]);
 
   const typeColors = {
     grass: "bg-green-500",
@@ -114,19 +108,32 @@ export default function PokeCard({ searchQuery }) {
               </Link>
             </div>
             <div className="flex items-end justify-end">
-              <Image
-                src={
-                  poke.sprites.versions["generation-v"]["black-white"]
-                    .animated.front_default
-                }
-                width={150}
-                height={150}
-                alt={poke.name}
-              />
+              {poke.sprites?.versions?.["generation-v"]?.["black-white"]?.animated
+                ?.front_default ? (
+                <Image
+                  src={
+                    poke.sprites.versions["generation-v"]["black-white"]
+                      .animated.front_default
+                  }
+                  width={150}
+                  height={150}
+                  alt={poke.name}
+                />
+              ) : (
+                <p className="text-gray-400">Image not available</p>
+              )}
             </div>
           </div>
         </div>
       ))}
+      {hasMore && (
+        <button
+          onClick={() => fetchPosts(nextUrl)}
+          className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"
+        >
+          Load More
+        </button>
+      )}
     </div>
   );
 }
