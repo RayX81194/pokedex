@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar/Navbar";
 import SmoothScrolling from "./components/SmoothScrolling/SmoothScrolling";
 import BackToTopButton from "./components/BackToTop/BackToTop";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const kumbh = Kumbh_Sans({ subsets: ["latin"] });
 
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
         </div>
         <Navbar />
         {children}
+        <SpeedInsights />
         <BackToTopButton />
         </SmoothScrolling>
       </body>

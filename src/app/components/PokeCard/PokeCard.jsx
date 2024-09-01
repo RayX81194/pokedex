@@ -8,7 +8,6 @@ const LIMIT = 30; // Number of Pokémon to fetch per request
 export default function PokeCard({ searchQuery }) {
   const [posts, setPosts] = useState([]);
   const [nextUrl, setNextUrl] = useState(`https://pokeapi.co/api/v2/pokemon?limit=${LIMIT}`);
-  const [hasMore, setHasMore] = useState(true);
 
   const fetchPosts = async (url) => {
     try {

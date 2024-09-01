@@ -5,6 +5,7 @@ import PokeCard from "./components/PokeCard/PokeCard"
 import PokeSearch from "./components/PokeSearch/PokeSearch";
 
 
+
 export default function Home() {
   const [pokemon, setPokemon] = useState("");
 
