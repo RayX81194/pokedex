@@ -65,7 +65,7 @@ export default function PokeInfo() {
     };
 
     return (
-      <section className="bg-white shadow-2xl rounded-lg flex flex-col xl:flex-row items-start">
+      <section className="bg-white shadow-2xl rounded-lg flex flex-col xl:flex-row px-4 xl:px-0 items-center md:items-start">
         <div className="poke-image px-20 py-10">
           <Image 
             src={poke.sprites.other.home.front_default} 
@@ -91,17 +91,17 @@ export default function PokeInfo() {
                   </h1>
                 ))}    
           </div>
-          <p className="max-w-[400px] mt-3">{pokeDesc.flavor_text_entries
+          <p className="max-w-[340px] mt-3">{pokeDesc.flavor_text_entries
             .find((entry) => entry.language.name === "en")
             .flavor_text.replace(/[\n\r\f]/g, " ") // Replace newlines, carriage returns, and form feeds with spaces
             .replace(/\s+/g, " ") // Replace multiple spaces with a single space
             .trim()}</p>
           <div className="flex mt-4 gap-x-5">
-            <div className="flex rounded-md items-center justify-between bg-[#F6F8FC] w-[220px] px-3 py-2">
+            <div className="flex rounded-md items-center justify-between bg-[#F6F8FC] w-[155px] md:w-[220px] px-3 py-2">
               <h2 className="font-bold">Height</h2>
               <h2>{poke.height}m</h2>
             </div>
-            <div className="flex rounded-md items-center justify-between bg-[#F6F8FC] w-[220px] px-3 py-2">
+            <div className="flex rounded-md items-center justify-between bg-[#F6F8FC] w-[160px] md:w-[220px] px-3 py-2">
               <h2 className="font-bold">Weight</h2>
               <h2>{poke.weight}Kg</h2>
             </div>
@@ -109,7 +109,7 @@ export default function PokeInfo() {
           <h2 className="font-bold text-xl mt-3">Stats</h2>
           <div className="grid grid-cols-2 gap-y-3 mt-4 gap-x-5">
             {poke.stats.map((stat, index) => (
-              <div key={index} className="flex rounded-md items-center justify-between bg-[#F6F8FC] w-[220px] px-3 py-2">
+              <div key={index} className="flex rounded-md items-center justify-between bg-[#F6F8FC] w-[155px] md:w-[220px] px-3 py-2">
                 <h2 className="font-bold">{stat.stat.name.charAt(0).toUpperCase() + stat.stat.name.slice(1)}</h2>
                 <h2>{stat.base_stat}</h2>
               </div>
@@ -118,7 +118,7 @@ export default function PokeInfo() {
           <h2 className="font-bold mt-4 text-xl">Abilities</h2>
           <div className="grid grid-cols-2 gap-y-3 mt-4 mb-10 gap-x-5">
             {poke.abilities.map((ability, index) => (
-              <div key={index} className="flex rounded-md items-center justify-start bg-[#F6F8FC] w-[220px] px-3 py-2">
+              <div key={index} className="flex rounded-md items-center justify-start bg-[#F6F8FC] w-[155px] md:w-[220px] px-3 py-2">
                 <h2 className="font-bold">{ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1)}</h2>
               </div>
             ))}

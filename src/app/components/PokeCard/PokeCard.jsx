@@ -90,7 +90,7 @@ export default function PokeCard({ searchQuery }) {
                 </h1>
               ))}
             </div>
-            <p className="text-black font-bold">#{poke.id}</p>
+            <p className="text-black font-bold">#{poke.id.toString().padStart(3, '0')}</p>
           </div>
           <div className="poke-image gap-x-3 flex justify-between">
             <div className="flex flex-col gap-y-1 items-start justify-between">
@@ -118,6 +118,7 @@ export default function PokeCard({ searchQuery }) {
                   width={150}
                   height={150}
                   alt={poke.name}
+                  unoptimized
                 />
               ) : (
                 <p className="text-gray-400">Image not available</p>
@@ -126,14 +127,6 @@ export default function PokeCard({ searchQuery }) {
           </div>
         </div>
       ))}
-      {hasMore && (
-        <button
-          onClick={() => fetchPosts(nextUrl)}
-          className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"
-        >
-          Load More
-        </button>
-      )}
     </div>
   );
 }
