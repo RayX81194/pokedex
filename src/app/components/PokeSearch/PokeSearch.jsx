@@ -2,7 +2,7 @@
 import Image from "next/image";
 
 
-export default function PokeSearch({ pokemon, setPokemon }) {
+export default function PokeSearch() {
 
   const handleEvent = (e) => {
     e.preventDefault();
@@ -10,9 +10,8 @@ export default function PokeSearch({ pokemon, setPokemon }) {
   }
 
   return (
-      <form className="flex px-3 sm:flex-row mt-10 gap-x-3 gap-y-3 sm:gap-y-0" onSubmit={(e) => e.preventDefault()}>
+      <form className="mb-6 flex px-3 sm:flex-row mt-10 gap-x-3 gap-y-3 sm:gap-y-0" onSubmit={(e) => e.preventDefault()}>
   <input
-    value={pokemon}
     onChange={handleEvent}
     className="bg-white w-[20rem] sm:w-[30rem] md:w-[40rem] lg:w-[50rem] font-medium focus:ring-2 transition-all focus:shadow-xl ring-red-600 outline-none h-[4rem] mx-auto shadow-md placeholder-gray-500 px-5 rounded-[100px]"
     placeholder="Search eg, Pikachu or Ditto..."

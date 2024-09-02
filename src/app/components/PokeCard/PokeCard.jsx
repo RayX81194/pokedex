@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const LIMIT = 30; // Number of Pokémon to fetch per request
+const LIMIT = 1; // Number of Pokémon to fetch per request
 
 export default function PokeCard({ searchQuery }) {
   const [posts, setPosts] = useState([]);
@@ -112,7 +112,7 @@ export default function PokeCard({ searchQuery }) {
                 <Image
                   src={
                     poke.sprites.versions["generation-v"]["black-white"]
-                      .animated.front_default
+                      .front_default
                   }
                   width={150}
                   height={150}
