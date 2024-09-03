@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function PokeNCard() {
-  // State for Pokémon data and search query
   const [posts, setPosts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -90,7 +89,7 @@ export default function PokeNCard() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <Image src="search.svg" width={25} height={10} />
+        <Image src="search.svg" width={25} height={10} alt="Search Icon" />
       </div>
 
       {/* Pokémon Grid */}
@@ -138,7 +137,6 @@ export default function PokeNCard() {
                       width={150}
                       height={150}
                       alt={poke.name}
-                      unoptimized
                     />
                   ) : (
                     <p className="text-gray-400">Image not available</p>

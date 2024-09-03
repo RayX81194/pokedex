@@ -20,7 +20,6 @@ export default function PokeEvol() {
         let evolutionRes = await fetch(evolutionChainUrl);
         let evolutionData = await evolutionRes.json();
         setPokeEvol(evolutionData);
-        console.log(evolutionData);
       } catch (error) {
         console.error("Error fetching the Pokémon evolution chain:", error);
       }
