@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar/Navbar";
 import SmoothScrolling from "./components/SmoothScrolling/SmoothScrolling";
 import BackToTopButton from "./components/BackToTop/BackToTop";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import React, { useState } from 'react'; // Import useState here
+import React, { useState } from 'react';
 
 const kumbh = Kumbh_Sans({ subsets: ["latin"] });
 
@@ -26,6 +26,9 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
+      <head>
+        <title>PokeDex - Home</title>
+      </head>
       <body className={`${kumbh.className} overflow-x-hidden ${theme ? 'bg-[#DD092F]' : 'bg-[#F6F8FC]'}`}>
         <SmoothScrolling>
           <div className="bg-images overflow-hidden">

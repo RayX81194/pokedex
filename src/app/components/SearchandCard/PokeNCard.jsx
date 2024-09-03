@@ -146,7 +146,7 @@ export default function PokeNCard() {
             </div>
           ))
         ) : (<div className="ml-20 mt-20">
-            <Image src="/loader2.gif" width={200} height={200}></Image>
+            <Image src="/loader2.gif" width={200} height={200} alt="Loader" unoptimized></Image>
         </div>
         )}
       </div>

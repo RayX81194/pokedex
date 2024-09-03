@@ -52,7 +52,7 @@ export default function PokeEvol() {
 
   if (!pokeEvol) return (
     <section className="w-[76rem] h-[10rem] my-1 flex items-center justify-center">
-          <Image src="/loader.svg" width={50} height={50}></Image>
+          <Image src="/loader.svg" alt="Loader" width={50} height={50}></Image>
     </section>
   )
 

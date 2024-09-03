@@ -1,5 +1,5 @@
 import Image from "next/image";
-import PokeNCard from "./components/PokeNewCard/PokeNCard"
+import PokeNCard from "./components/SearchandCard/PokeNCard"
 import { Suspense } from "react";
 
 
