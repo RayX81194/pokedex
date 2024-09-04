@@ -29,9 +29,9 @@ export default function PokeEvol() {
 
   const renderEvolutions = (chain) => {
     const evolutions = [];
-    let currentChain = chain;
+    const renderChain = (currentChain) => {
+      if (!currentChain) return;
 
-    while (currentChain) {
       const name = currentChain.species.name;
       const pokeId = currentChain.species.url.split('/').slice(-2, -1)[0]; // Extract Pokémon ID from species URL
       const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeId}.png`;
@@ -44,9 +44,12 @@ export default function PokeEvol() {
           </p>
         </div>
       );
-      currentChain = currentChain.evolves_to[0]; // Move to the next evolution stage
-    }
 
+      // Recursively render each evolution in the current chain
+      currentChain.evolves_to.forEach(nextEvolution => renderChain(nextEvolution));
+    };
+
+    renderChain(chain);
     return evolutions;
   };
 
@@ -54,12 +57,12 @@ export default function PokeEvol() {
     <section className="w-[76rem] h-[10rem] my-1 flex items-center justify-center">
           <Image src="/loader.svg" alt="Loader" width={50} height={50}></Image>
     </section>
-  )
+  );
 
   return (
     <section className="mt-10">
       <h2 className="font-bold text-[40px] tracking-wide">Evolutions</h2>
-      <div className="poke-evols grid grid-cols-1 md:flex  gap-10">
+      <div className="poke-evols grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10">
         {renderEvolutions(pokeEvol.chain)}
       </div>
     </section>
