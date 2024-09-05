@@ -34,12 +34,9 @@ Installation
 
 4.  **Start the development server:**
 
-    bash
-
-    Copy code
-
+    ```bash
     `npm run dev`
-
+    ```
     The project will be running at `http://localhost:3000`.
 
 Technologies Used
@@ -48,18 +45,16 @@ Technologies Used
 -   **Next.js**: A React framework for server-side rendering and static site generation.
 -   **PokeAPI**: A free and open API to access Pokémon data.
 -   **Tailwind CSS**: Utility-first CSS framework for rapid UI development.
--   **Axios**: A promise-based HTTP client for making API requests.
 -   **React Hooks**: To manage state and lifecycle in functional components.
+-   **Lenis**: For Smooth Scrolling over the webpage.
+-   
 
 Usage
 -----
 
-1.  Enter the name or ID of the Pokémon in the search bar.
+1.  Enter the name of the Pokémon in the search bar.
 2.  View details about the Pokémon, including stats, evolution chain, abilities, height, and weight.
 3.  Browse through different Pokémon by searching or clicking on evolution chains.
-
-Screenshots
------------
 
 Contributing
 ------------
