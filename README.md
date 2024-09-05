@@ -24,15 +24,16 @@ Installation
     git clone https://github.com/your-username/PokeDex.git
 
 2.  **Navigate into the project directory:**
-    ```
+   
+    ```bash
     cd PokeDex
 
-3.  **Install dependencies:**
+4.  **Install dependencies:**
 
     ```bash
     `npm install`
 
-4.  **Start the development server:**
+5.  **Start the development server:**
 
     ```bash
     `npm run dev`
