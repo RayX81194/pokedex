@@ -62,7 +62,7 @@ export default function PokeEvol() {
   return (
     <section className="mt-10">
       <h2 className="font-bold text-[40px] tracking-wide">Evolutions</h2>
-      <div className="poke-evols grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10">
+      <div className="poke-evols grid grid-cols-1 md:flex gap-10">
         {renderEvolutions(pokeEvol.chain)}
       </div>
     </section>

@@ -12,7 +12,7 @@ export default function PokeNCard() {
       let data;
       let detailedPosts;
       try {
-        data = await fetch('https://pokeapi.co/api/v2/pokemon?limit=905&offset=0');
+        data = await fetch('https://pokeapi.co/api/v2/pokemon?limit=50&offset=0');
         const result = await data.json();
         detailedPosts = await Promise.all(
           result.results.map(async (post) => {
@@ -81,15 +81,15 @@ export default function PokeNCard() {
   return (
     <div className="my-10 sm:mx-20">
       {/* Search Bar */}
-      <div className="flex bg-white w-[20rem] mb-10 sm:w-[30rem] md:w-[40rem] lg:w-[50rem] font-medium outline-none h-[4rem] mx-auto shadow-md placeholder-gray-500 px-5 rounded-[100px]">
+      <div className="flex bg-white w-[20rem] mb-10 sm:w-[30rem] md:w-[40rem] lg:w-[50rem] gap-x-3 font-medium outline-none h-[4rem] mx-auto shadow-md placeholder-gray-500 px-5 rounded-[100px]">
+      <Image src="search.svg" width={25} height={10} alt="Search Icon" />
         <input
           type="text"
-          placeholder="Search Pokémon..."
+          placeholder="Search Pokémon eg, Pikachu..."
               className="bg-transparent outline-none w-[20rem] sm:w-[30rem] md:w-[40rem] lg:w-[50rem]"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <Image src="search.svg" width={25} height={10} alt="Search Icon" />
       </div>
 
       {/* Pokémon Grid */}
@@ -98,14 +98,14 @@ export default function PokeNCard() {
           filteredPosts.map((poke) => (
             <div
               key={poke.id}
-              className="bg-white hover:shadow-xl transition-all hover:scale-105 active:scale-95 shadow-md rounded-xl max-w-[370px] p-4 flex flex-col justify-between"
+              className="bg-white transition-all border border-gray-300 shadow-md rounded-xl max-w-[370px] p-4 flex flex-col justify-between"
             >
               <div className="poke-info flex justify-between">
                 <div className="flex gap-x-2">
                   {poke.types.map((type) => (
                     <h1
                       key={type}
-                      className={`px-3 py-1 font-semibold text-black rounded-full text-[11px] ${
+                      className={`px-3 py-1 font-medium text-white rounded-full text-[11px] ${
                         typeColors[type] || "bg-gray-300"
                       }`}
                     >
@@ -125,7 +125,7 @@ export default function PokeNCard() {
                       poke.description.slice(1).toLowerCase()}
                   </p>
                   <Link href={`/pokemon/${poke.id}/details`}>
-                    <button className="bg-gray-200 hover:bg-gray-300 transition-all text-black font-bold py-2 px-4 text-[12px] mt-1 rounded-md">
+                    <button className="bg-gray-200 hover:bg-gray-300 active:bg-gray-200 active:scale-95 transition-all text-black font-bold py-2 px-4 text-[12px] mt-1 rounded-md">
                       Know More
                     </button>
                   </Link>
