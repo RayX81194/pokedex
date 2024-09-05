@@ -12,7 +12,7 @@ export default function PokeNCard() {
       let data;
       let detailedPosts;
       try {
-        data = await fetch('https://pokeapi.co/api/v2/pokemon?limit=50&offset=0');
+        data = await fetch('https://pokeapi.co/api/v2/pokemon?limit=905&offset=0');
         const result = await data.json();
         detailedPosts = await Promise.all(
           result.results.map(async (post) => {

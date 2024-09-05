@@ -1,29 +1,30 @@
-'use client';
+'use client'
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 
 export default function PokeEvol() {
   const [pokeEvol, setPokeEvol] = useState(null);
+  const [error, setError] = useState(null); // Add error state
   const params = useParams();
   const id = params.id;
-  
+
   useEffect(() => {
     async function fetchPokemonSpecies() {
       try {
-        // Fetch Pokémon species data to get the evolution chain URL
-        let speciesRes = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}/`);
-        let speciesData = await speciesRes.json();
+        const speciesRes = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}/`);
+        const speciesData = await speciesRes.json();
         const evolutionChainUrl = speciesData.evolution_chain.url;
 
-        // Fetch the evolution chain data
-        let evolutionRes = await fetch(evolutionChainUrl);
-        let evolutionData = await evolutionRes.json();
+        const evolutionRes = await fetch(evolutionChainUrl);
+        const evolutionData = await evolutionRes.json();
         setPokeEvol(evolutionData);
       } catch (error) {
         console.error("Error fetching the Pokémon evolution chain:", error);
+        setError(error); // Set error state
       }
     }
+
     fetchPokemonSpecies();
   }, [id]);
 
@@ -53,11 +54,21 @@ export default function PokeEvol() {
     return evolutions;
   };
 
-  if (!pokeEvol) return (
-    <section className="w-[76rem] h-[10rem] my-1 flex items-center justify-center">
-          <Image src="/loader.svg" alt="Loader" width={50} height={50}></Image>
-    </section>
-  );
+  if (error) {
+    return (
+      <section className="w-[76rem] h-[10rem] my-1 flex items-center justify-center">
+        <p>Error fetching evolutions: {error.message}</p>
+      </section>
+    );
+  }
+
+  if (!pokeEvol) {
+    return (
+      <section className="w-[76rem] h-[10rem] my-1 flex items-center justify-center">
+        <Image src="/loader.svg" alt="Loader" width={50} height={50} />
+      </section>
+    );
+  }
 
   return (
     <section className="mt-10">
